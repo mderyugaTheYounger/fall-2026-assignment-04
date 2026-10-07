@@ -1,0 +1,53 @@
+# Library Management System Schema
+
+```mermaid
+erDiagram
+    users {
+        serial id PK
+        varchar email
+        varchar name
+        timestamp created_at
+    }
+
+    authors {
+        serial id PK
+        varchar name
+        text bio
+    }
+
+    genres {
+        serial id PK
+        varchar name
+    }
+
+    books {
+        serial id PK
+        varchar title
+        varchar isbn
+        int author_id FK
+        int genre_id FK
+        timestamp created_at
+    }
+
+    borrowers {
+        serial id PK
+        int user_id FK
+        varchar phone
+        text address
+    }
+
+    loans {
+        serial id PK
+        int book_id FK
+        int borrower_id FK
+        timestamp loan_date
+        timestamp due_date
+        timestamp return_date
+    }
+
+    authors ||--o{ books : "writes"
+    genres ||--o{ books : "categorizes"
+    users ||--o| borrowers : "has_profile"
+    borrowers ||--o{ loans : "takes"
+    books ||--o{ loans : "loaned_in"
+```

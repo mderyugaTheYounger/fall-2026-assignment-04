@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" width="900" height="650" style="background-color: white;">
+  <style>
+    .entity-box { fill: #f0f4f8; stroke: #334e68; stroke-width: 2; rx: 6; }
+    .entity-header { fill: #334e68; rx: 6; }
+    .entity-title { fill: #ffffff; font-family: sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; }
+    .attr-text { fill: #102a43; font-family: monospace; font-size: 12px; }
+    .attr-pk { fill: #b83280; font-weight: bold; font-family: monospace; font-size: 12px; }
+    .attr-fk { fill: #3182ce; font-weight: bold; font-family: monospace; font-size: 12px; }
+    .rel-line { stroke: #627d98; stroke-width: 2; fill: none; }
+    .rel-text { fill: #486581; font-family: sans-serif; font-size: 11px; text-anchor: middle; }
+  </style>
+
+  <!-- Users Entity -->
+  <g id="entity-users" transform="translate(50, 40)">
+    <rect class="entity-box" width="200" height="130" />
+    <path d="M 0,0 L 200,0 L 200,30 L 0,30 Z" class="entity-header" />
+    <text x="100" y="20" class="entity-title">users</text>
+    <text x="15" y="52" class="attr-text">id: serial <tspan class="attr-pk">PK</tspan></text>
+    <text x="15" y="74" class="attr-text">email: varchar</text>
+    <text x="15" y="96" class="attr-text">name: varchar</text>
+    <text x="15" y="118" class="attr-text">created_at: timestamp</text>
+  </g>
+
+  <!-- Borrowers Entity -->
+  <g id="entity-borrowers" transform="translate(50, 240)">
+    <rect class="entity-box" width="200" height="130" />
+    <path d="M 0,0 L 200,0 L 200,30 L 0,30 Z" class="entity-header" />
+    <text x="100" y="20" class="entity-title">borrowers</text>
+    <text x="15" y="52" class="attr-text">id: serial <tspan class="attr-pk">PK</tspan></text>
+    <text x="15" y="74" class="attr-text">user_id: int <tspan class="attr-fk">FK</tspan></text>
+    <text x="15" y="96" class="attr-text">phone: varchar</text>
+    <text x="15" y="118" class="attr-text">address: text</text>
+  </g>
+
+  <!-- Authors Entity -->
+  <g id="entity-authors" transform="translate(650, 40)">
+    <rect class="entity-box" width="200" height="110" />
+    <path d="M 0,0 L 200,0 L 200,30 L 0,30 Z" class="entity-header" />
+    <text x="100" y="20" class="entity-title">authors</text>
+    <text x="15" y="52" class="attr-text">id: serial <tspan class="attr-pk">PK</tspan></text>
+    <text x="15" y="74" class="attr-text">name: varchar</text>
+    <text x="15" y="96" class="attr-text">bio: text</text>
+  </g>
+
+  <!-- Genres Entity -->
+  <g id="entity-genres" transform="translate(650, 200)">
+    <rect class="entity-box" width="200" height="90" />
+    <path d="M 0,0 L 200,0 L 200,30 L 0,30 Z" class="entity-header" />
+    <text x="100" y="20" class="entity-title">genres</text>
+    <text x="15" y="52" class="attr-text">id: serial <tspan class="attr-pk">PK</tspan></text>
+    <text x="15" y="74" class="attr-text">name: varchar</text>
+  </g>
+
+  <!-- Books Entity -->
+  <g id="entity-books" transform="translate(350, 100)">
+    <rect class="entity-box" width="220" height="170" />
+    <path d="M 0,0 L 220,0 L 220,30 L 0,30 Z" class="entity-header" />
+    <text x="110" y="20" class="entity-title">books</text>
+    <text x="15" y="52" class="attr-text">id: serial <tspan class="attr-pk">PK</tspan></text>
+    <text x="15" y="74" class="attr-text">title: varchar</text>
+    <text x="15" y="96" class="attr-text">isbn: varchar</text>
+    <text x="15" y="118" class="attr-text">author_id: int <tspan class="attr-fk">FK</tspan></text>
+    <text x="15" y="140" class="attr-text">genre_id: int <tspan class="attr-fk">FK</tspan></text>
+    <text x="15" y="162" class="attr-text">created_at: timestamp</text>
+  </g>
+
+  <!-- Loans Entity -->
+  <g id="entity-loans" transform="translate(350, 380)">
+    <rect class="entity-box" width="220" height="170" />
+    <path d="M 0,0 L 220,0 L 220,30 L 0,30 Z" class="entity-header" />
+    <text x="110" y="20" class="entity-title">loans</text>
+    <text x="15" y="52" class="attr-text">id: serial <tspan class="attr-pk">PK</tspan></text>
+    <text x="15" y="74" class="attr-text">book_id: int <tspan class="attr-fk">FK</tspan></text>
+    <text x="15" y="96" class="attr-text">borrower_id: int <tspan class="attr-fk">FK</tspan></text>
+    <text x="15" y="118" class="attr-text">loan_date: timestamp</text>
+    <text x="15" y="140" class="attr-text">due_date: timestamp</text>
+    <text x="15" y="162" class="attr-text">return_date: timestamp</text>
+  </g>
+
+  <!-- Relationships -->
+  <!-- users to borrowers -->
+  <path d="M 150,170 L 150,240" class="rel-line" />
+  <text x="180" y="210" class="rel-text">profile</text>
+
+  <!-- authors to books -->
+  <path d="M 650,95 L 570,140" class="rel-line" />
+  <text x="615" y="110" class="rel-text">writes</text>
+
+  <!-- genres to books -->
+  <path d="M 650,230 L 570,210" class="rel-line" />
+  <text x="615" y="215" class="rel-text">categorizes</text>
+
+  <!-- borrowers to loans -->
+  <path d="M 250,305 L 350,420" class="rel-line" />
+  <text x="290" y="375" class="rel-text">borrows</text>
+
+  <!-- books to loans -->
+  <path d="M 460,270 L 460,380" class="rel-line" />
+  <text x="490" y="330" class="rel-text">loaned</text>
+</svg>
